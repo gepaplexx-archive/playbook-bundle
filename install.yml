@@ -1,0 +1,29 @@
+---
+- name: Install Bundle
+  hosts: all
+  tasks: 
+    - name: Add Helm Repositories
+      with_items: "{{ bundle_repositories }}"
+      kubernetes.core.helm_repository:
+        repo_url: "{{ item.url | mandatory }}"
+        repo_name: "{{ item.name | mandatory }}"
+
+    # TODO: Maybe as a feature, enable setting a git url to a helm chart
+    # - name: Cloning Git Repository
+    #   with_items: "{{ bundle_install }}"
+    #   when: "{{ item.git_url | default(false) }}"
+    #   ansible.builtin.git:
+    #     repo: "{{ item.git_url }}"
+    #     dest: "/tmp/{{ item.name | mandatory }}"
+
+    - name: Install Helm Charts
+      with_items: "{{ bundle_install }}"
+      kubernetes.core.helm:
+        chart_ref: "{{ item.chart_ref | mandatory }}"
+        chart_version: "{{ item.chart_version | default() }}"
+        create_namespace: "{{ item.create_namespace | default(true) }}"
+        release_name: "{{ item.name | mandatory }}"
+        release_namespace: "{{ item.namespace | default('default') }}"
+        release_values: "{{ item.parameters | default('{}') }}"
+        release_state: "{{ item.state | default('present') }}"
+...

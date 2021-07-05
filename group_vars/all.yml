@@ -1,0 +1,21 @@
+---
+bundle_repositories:
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
+    
+bundle_install:
+  # # Template
+  # - name: nginx
+  #   chart_ref: bitnami/nginx
+  #   namespace: default      # optional
+  #   chart_version: null     # optional
+  #   create_namespace: true  # optional
+  #   state: present          # optional
+  #   parameters:             # optional
+  #     replicaCount: 2
+  #     image:
+  #       tag: latest
+
+  - name: nginx
+    chart_ref: bitnami/nginx
+...

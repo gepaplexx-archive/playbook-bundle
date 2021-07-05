@@ -1,0 +1,4 @@
+ansible<4
+ansible-base
+
+kubernetes

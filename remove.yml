@@ -1,0 +1,15 @@
+---
+- name: Remove Bundle
+  hosts: all
+  tasks: 
+    - name: Uninstall Helm Charts
+      with_items: "{{ bundle_install }}"
+      kubernetes.core.helm:
+        release_name: "{{ item.name | mandatory }}"
+        release_namespace: "{{ item.namespace | default('default') }}"
+        release_state: absent
+
+    - name: Note
+      debug:
+        msg: "Note: Namespaces must be deleted manually!"
+...
