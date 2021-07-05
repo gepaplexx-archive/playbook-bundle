@@ -2,3 +2,4 @@ ansible<4
 ansible-base
 
 kubernetes
+https://releases.ansible.com/ansible-tower/cli/ansible-tower-cli-latest.tar.gz

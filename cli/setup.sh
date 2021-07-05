@@ -27,7 +27,7 @@ awx inventory_source create --wait -k \
     --inventory "Bundle-Test" \
     --name "Git" \
     --source scm \
-    --source_path "hosts.ini" \
+    --source_path "inventory/local/hosts.ini" \
     --source_project "Bundle-Test" \
     --overwrite true \
     --overwrite_vars true \
