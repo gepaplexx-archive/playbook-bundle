@@ -11,6 +11,7 @@ bundle_install:
   #   chart_version: null     # optional
   #   create_namespace: true  # optional
   #   state: present          # optional
+  #   wait: fasle             # optional
   #   parameters:             # optional
   #     replicaCount: 2
   #     image:

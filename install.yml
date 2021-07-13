@@ -26,4 +26,5 @@
         release_namespace: "{{ item.namespace | default('default') }}"
         release_values: "{{ item.parameters | default('{}') }}"
         release_state: "{{ item.state | default('present') }}"
+        wait: "{{ item.wait | default(false) }}"
 ...
