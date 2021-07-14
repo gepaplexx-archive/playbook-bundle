@@ -3,7 +3,7 @@
   hosts: all
   tasks: 
     - name: Uninstall Helm Charts
-      with_items: "{{ bundle_install }}"
+      with_items: "{{ bundle_packages }}"
       kubernetes.core.helm:
         release_name: "{{ item.name | mandatory }}"
         release_namespace: "{{ item.namespace | default('default') }}"

@@ -10,14 +10,14 @@
 
     # TODO: Maybe as a feature, enable setting a git url to a helm chart
     # - name: Cloning Git Repository
-    #   with_items: "{{ bundle_install }}"
+    #   with_items: "{{ bundle_packages }}"
     #   when: "{{ item.git_url | default(false) }}"
     #   ansible.builtin.git:
     #     repo: "{{ item.git_url }}"
     #     dest: "/tmp/{{ item.name | mandatory }}"
 
     - name: Install Helm Charts
-      with_items: "{{ bundle_install }}"
+      with_items: "{{ bundle_packages }}"
       kubernetes.core.helm:
         chart_ref: "{{ item.chart_ref | mandatory }}"
         chart_version: "{{ item.chart_version | default() }}"

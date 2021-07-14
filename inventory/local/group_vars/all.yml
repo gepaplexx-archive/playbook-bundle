@@ -3,7 +3,7 @@ bundle_repositories:
   - name: bitnami
     url: https://charts.bitnami.com/bitnami
     
-bundle_install:
+bundle_packages:
   # # Template
   # - name: nginx
   #   chart_ref: bitnami/nginx
