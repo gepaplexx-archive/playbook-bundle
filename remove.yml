@@ -5,21 +5,21 @@
 
     - name: Remove Definitions
       with_items: "{{ bundle_packages }}"
-      when: item.definition is defined
+      when: item.definition is defined and ( item.when | default(true) )
       kubernetes.core.k8s:
         state: absent
         definition: "{{ item.definition }}"
 
     - name: Remove Manifests
       with_items: "{{ bundle_packages }}"
-      when: item.manifest_uri is defined
+      when: item.manifest_uri is defined and ( item.when | default(true) )
       kubernetes.core.k8s:
         state: absent
         src: "{{ item.manifest_uri }}"
 
     - name: Uninstall Helm Charts
       with_items: "{{ bundle_packages }}"
-      when: item.chart_ref is defined
+      when: item.chart_ref is defined and ( item.when | default(true) )
       kubernetes.core.helm:
         release_name: "{{ item.name | mandatory }}"
         release_namespace: "{{ item.namespace | default('default') }}"
