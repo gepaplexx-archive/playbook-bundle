@@ -27,4 +27,20 @@
         release_values: "{{ item.parameters | default('{}') }}"
         release_state: "{{ item.state | default('present') }}"
         wait: "{{ item.wait | default(false) }}"
+
+    - name: Apply Manifests
+      with_items: "{{ bundle_packages }}"
+      when: item.manifest_uri is defined and ( item.when | default(true) )
+      kubernetes.core.k8s:
+        state: present
+        remote_src: yes
+        src: "{{ item.manifest_uri }}"
+        namespace: "{{ item.namespace | default('default') }}"
+
+    - name: Apply Definitions
+      with_items: "{{ bundle_packages }}"
+      when: item.definition is defined and ( item.when | default(true) )
+      kubernetes.core.k8s:
+        state: present
+        definition: "{{ item.definition }}"
 ...

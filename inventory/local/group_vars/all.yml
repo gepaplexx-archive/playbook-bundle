@@ -17,6 +17,8 @@ bundle_packages:
   #     image:
   #       tag: latest
 
-  - name: nginx
-    chart_ref: bitnami/nginx
+  # - name: nginx
+  #   chart_ref: bitnami/nginx
+    - manifest_uri: https://raw.githubusercontent.com/CrunchyData/postgres-operator-examples/main/kustomize/openshift/postgres.yaml
+      namespace: "bundle-test"
 ...

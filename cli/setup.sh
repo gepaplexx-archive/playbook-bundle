@@ -11,7 +11,7 @@ awx projects create --wait -k \
     --name "Bundle-Test" \
     --organization 1 \
     --scm_type git \
-    --scm_url "https://github.com/gepaplexx/bundle-playbook" \
+    --scm_url "https://github.com/gepaplexx/playbook-bundle" \
     -f human
 
 echo ""
