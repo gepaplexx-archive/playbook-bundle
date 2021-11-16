@@ -18,6 +18,7 @@
 
     - name: Install Helm Charts
       with_items: "{{ bundle_packages }}"
+      when: item.chart_ref is defined and ( item.when | default(true) )
       kubernetes.core.helm:
         chart_ref: "{{ item.chart_ref | mandatory }}"
         chart_version: "{{ item.chart_version | default() }}"
@@ -33,7 +34,6 @@
       when: item.manifest_uri is defined and ( item.when | default(true) )
       kubernetes.core.k8s:
         state: present
-        remote_src: yes
         src: "{{ item.manifest_uri }}"
         namespace: "{{ item.namespace | default('default') }}"
 
