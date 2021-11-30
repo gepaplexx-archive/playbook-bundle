@@ -1,6 +1,8 @@
 ---
 - name: Install Bundle
   hosts: all
+  environment:
+    KUBECONFIG: "{{ openshift_kubeconfig_file }}"
   tasks: 
     - name: Add Helm Repositories
       with_items: "{{ bundle_repositories }}"
