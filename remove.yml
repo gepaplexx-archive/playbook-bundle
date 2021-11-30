@@ -1,6 +1,8 @@
 ---
 - name: Remove Bundle
   hosts: all
+  environment:
+    KUBECONFIG: "{{ openshift_kubeconfig_file }}"
   tasks: 
 
     - name: Remove Definitions
